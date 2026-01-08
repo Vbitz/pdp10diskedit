@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+body {
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-100);
+}
+
+/* Custom scrollbar for hex view */
+.hex-view::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.hex-view::-webkit-scrollbar-track {
+  background-color: var(--color-gray-800);
+}
+
+.hex-view::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-600);
+  border-radius: 4px;
+}
+
+.hex-view::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-500);
+}
