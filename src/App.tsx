@@ -48,27 +48,29 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-amber-400">PDP-10 Disk Editor</h1>
-        <p className="text-gray-400 mt-1">
+    <div className="h-screen bg-gray-900 text-gray-100 p-4 flex flex-col overflow-hidden">
+      <header className="mb-4 shrink-0">
+        <h1 className="text-2xl font-bold text-amber-400">PDP-10 Disk Editor</h1>
+        <p className="text-gray-400 text-sm">
           36-bit word editor for SIMH disk images
         </p>
       </header>
 
-      <Toolbar
-        disk={disk}
-        displayMode={displayMode}
-        onDisplayModeChange={setDisplayMode}
-        onLoadDisk={handleLoadDisk}
-        onCreateDisk={handleCreateDisk}
-        onGotoWord={handleGotoWord}
-        onGotoSector={handleGotoSector}
-      />
+      <div className="shrink-0">
+        <Toolbar
+          disk={disk}
+          displayMode={displayMode}
+          onDisplayModeChange={setDisplayMode}
+          onLoadDisk={handleLoadDisk}
+          onCreateDisk={handleCreateDisk}
+          onGotoWord={handleGotoWord}
+          onGotoSector={handleGotoSector}
+        />
+      </div>
 
       {disk ? (
-        <div className="mt-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-span-3">
+        <div className="mt-4 flex-1 grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-0">
+          <div className="lg:col-span-3 min-h-0">
             <HexView
               disk={disk}
               startWord={startWord}
@@ -79,7 +81,7 @@ function App() {
               onSelectWord={setSelectedWord}
             />
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4 overflow-auto">
             <DiskInfo disk={disk} currentWord={startWord} />
             {selectedWord !== null && (
               <WordDetails
@@ -90,7 +92,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <div className="mt-12 text-center">
+        <div className="flex-1 flex items-center justify-center">
           <div className="inline-block bg-gray-800 rounded-lg p-8">
             <svg
               className="w-16 h-16 mx-auto mb-4 text-gray-600"
@@ -126,32 +128,6 @@ function App() {
           </div>
         </div>
       )}
-
-      <footer className="mt-8 text-center text-gray-500 text-sm">
-        <p>
-          PDP-10 Disk Editor | 36-bit word viewer for SIMH disk images
-        </p>
-        <p className="mt-1">
-          References:{' '}
-          <a
-            href="https://simh.trailing-edge.com/pdp10.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            SIMH PDP-10
-          </a>
-          {' | '}
-          <a
-            href="http://bitsavers.org/pdf/dec/pdp10/TOPS10/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            TOPS-10 Documentation
-          </a>
-        </p>
-      </footer>
     </div>
   );
 }
